@@ -2,7 +2,7 @@ import numpy as np
 import pickle
 import streamlit as st
 from PIL import Image
-loaded_model=pickle.load(open('trained_model.pkl'))
+loaded_model=pickle.load(open('trained_model.pkl','rb'))
 
 def run():
     img1 = Image.open('bank.png')
@@ -56,8 +56,7 @@ def run():
     ## Applicant Monthly Income
     mon_income = st.number_input("Applicant's Monthly Income($)",value=0)
 
-    ## Co-Applicant Monthly Income
-    co_mon_income = st.number_input("Co-Applicant's Monthly Income($)",value=0)
+   
 
     ## Loan AMount
     loan_amt = st.number_input("Loan Amount",value=0)
@@ -66,6 +65,9 @@ def run():
     dur_display = ['2 Month','6 Month','8 Month','1 Year','16 Month']
     dur_options = range(len(dur_display))
     dur = st.selectbox("Loan Duration",dur_options, format_func=lambda x: dur_display[x])
+    
+    ## total Monthly Income
+    co_mon_income = st.number_input("total Monthly Income($)",value=0)
 
     if st.button("Submit"):
         duration = 0
@@ -79,7 +81,7 @@ def run():
             duration = 360
         if dur == 4:
             duration = 480
-        features = [[gen, mar, dep, edu, emp, mon_income, co_mon_income, loan_amt, duration, cred, prop]]
+        features = [[gen, mar, dep, edu, emp, cred, prop, mon_income, loan_amt, duration, co_mon_income ]]
         print(features)
         prediction = model.predict(features)
         lc = [str(i) for i in prediction]
