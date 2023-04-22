@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 import streamlit as st
 from PIL import Image
-loaded_model=pickle.load(open('C:/Users/Ekansh/Documents/trained_model.sav'))
+loaded_model=pickle.load(open('trained_model.sav'))
 
 def run():
     img1 = Image.open('bank.png')
