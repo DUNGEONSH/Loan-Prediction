@@ -57,7 +57,7 @@ def run():
     loan_amt = st.number_input("Loan Amount",value=0)
 
     ## Applicant Monthly Income
-    mon_income = st.number_input("Applicant's Monthly Income($)",value=0)
+    mon_income = st.number_input("₹ Applicant's Monthly Income",value=0)
 
    
 
@@ -69,7 +69,7 @@ def run():
     dur = st.selectbox("Loan Duration",dur_options, format_func=lambda x: dur_display[x])
     
     ## total Monthly Income
-    co_mon_income = st.number_input("total Monthly Income($)",value=0)
+    co_mon_income = st.number_input("₹ total Monthly Income(applicant + coapplicant)",value=0)
 
     if st.button("Submit"):
         duration = 0
