@@ -52,14 +52,16 @@ def run():
     prop_display = ('Rural','Semi-Urban','Urban')
     prop_options = list(range(len(prop_display)))
     prop = st.selectbox("Property Area",prop_options, format_func=lambda x: prop_display[x])
+    
+    ## Loan AMount
+    loan_amt = st.number_input("Loan Amount",value=0)
 
     ## Applicant Monthly Income
     mon_income = st.number_input("Applicant's Monthly Income($)",value=0)
 
    
 
-    ## Loan AMount
-    loan_amt = st.number_input("Loan Amount",value=0)
+    
 
     ## loan duration
     dur_display = ['2 Month','6 Month','8 Month','1 Year','16 Month']
@@ -81,7 +83,7 @@ def run():
             duration = 360
         if dur == 4:
             duration = 480
-        features = [[gen, mar, dep, edu, emp, cred, prop, mon_income, loan_amt, dur, co_mon_income ]]
+        features = [[gen, mar, dep, edu, emp, cred, prop, loan_amt, mon_income, dur, co_mon_income ]]
         print(features)
         prediction = loaded_model.predict(features)
         lc = [str(i) for i in prediction]
